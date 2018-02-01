@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Word Detection</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="header" style="margin-top: 50px;"></div>
+	<div class="container">
+		<h2 class="text-center">Word Representation from Sentence</h2>
+		<hr>
+	</div>
+	<div class="container"> 
+		<form method="post" class="form-group">{% csrf_token %}
+			<label><b><i>Enter Sentence: </i></b></label>
+			<input type="text" name="sentence" id="sentence" class="form-control" value="{{sentence}}"><br>
+			<button type="submit" class="btn btn-md-primary">Find</button>
+		</form>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header text-center bg-danger"><b>Verbs</b></div>
+					<div class="card-body">
+						<table class="table table-bordered">
+							<tr>
+								<th>Word</th>
+								<th>Tag</th>
+								<th>Description</th>
+							</tr>
+							{% for i in verbs %}
+							<tr>
+								<td>{{ i.word }}</td>
+								<td>{{ i.type }}</td>
+								<td>{{ i.desc }}</td>
+							</tr>	
+							{% endfor %}
+						</table>
+					</div>			
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header text-center bg-warning"><b>Nouns</b></div>
+					<div class="card-body">
+						<table class="table table-bordered">
+							<tr>
+								<th>Word</th>
+								<th>Tag</th>
+								<th>Description</th>
+							</tr>
+							{% for i in nouns %}
+							<tr>
+								<td>{{ i.word }}</td>
+								<td>{{ i.type }}</td>
+								<td>{{ i.desc }}</td>
+							</tr>	
+							{% endfor %}
+						</table>
+					</div>		
+				</div>
+			</div>
+			<div class="col-md-12">
+				<br><br>
+				<div class="card">
+					<div class="card-header text-center bg-info"><b>Others</b></div>
+						<div class="card-body">
+							<table class="table table-bordered">
+								<tr>
+									<th>Word</th>
+									<th>Tag</th>
+									<th>Description</th>
+								</tr>
+								{% for i in others %}
+								<tr>
+									<td>{{ i.word }}</td>
+									<td>{{ i.type }}</td>
+									<td>{{ i.desc }}</td>
+								</tr>	
+								{% endfor %}
+							</table>
+						</div>		
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+</body>
+</html>
